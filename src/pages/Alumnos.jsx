@@ -99,7 +99,7 @@ mainS: {
     },
     Boton:{
       borderRadius:20,
-      backgroundColor:'#040508ff',
+      backgroundColor:'#252c3fff',
       width:'75%',
       alignSelf:'center',
       padding:2,
