@@ -1,23 +1,25 @@
 
-import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, TouchableOpacity, TextInput, Image, StatusBar,ImageBackground  } from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
+
 export default function Home({navigation}) {
     return (
         <SafeAreaView style={style.mainS}>
+            <ImageBackground style={style.wallpaper} resizeMode="cover" source={{uri:'https://tse3.mm.bing.net/th/id/OIP.kTBOWNtZgbUMJCLIJUhb6AHaNK?rs=1&pid=ImgDetMain&o=7&rm=3' }}>
             <View style={style.appBar}>
                 
             </View>
             {/* cierre de appbar */}
             {/* inicio ded formulario */}
-            <ScrollView style={{ padding: 10 }}>
+            <ScrollView style={{ padding:15}}>
 
 
                 <View style={style.container}>
-                    <Text style={{ textAlign: 'center', fontSize: 25, fontWeight: 'bold' }}>Sign In Form</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 25, fontWeight: 'bold', color:'#fff'}}>Sign In Form</Text>
                     <Image style={style.avatar} source={{ uri: 'https://img.freepik.com/vector-premium/impresion_1309087-156.jpg' }} />
 
                     <View style={style.cardInfo}>
@@ -46,7 +48,7 @@ export default function Home({navigation}) {
                 </View>
             </ScrollView>
             {/* fin de formulario */}
-            
+            </ImageBackground>
         </SafeAreaView>
 
     );
@@ -55,16 +57,19 @@ export default function Home({navigation}) {
 const style = StyleSheet.create({
     mainS: {
         flex: 1,
-        backgroundColor: '#e0e8ebff',
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
-        padding: 25,
+        //backgroundColor: '#ffffffff',
+       // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+        //padding: 25,
        
     },
-    
-
+    wallpaper:{
+        flex:1,
+         width: '100%',
+        height: '100%',
+    },
     container: {
         width: '100%',
-        backgroundColor: '#ffffffff',
+        backgroundColor: '#5188bbe7',
         borderRadius: 15,
         padding: 15,
         // alignItems: 'flex-start',
@@ -74,6 +79,7 @@ const style = StyleSheet.create({
         shadowRadius: 10,
         elevation: 5,
     },
+
     avatar: {
         width: 70,
         height: 70,
@@ -106,11 +112,11 @@ const style = StyleSheet.create({
         fontSize: 13,
         marginBottom: 10,
         borderRadius: 15,
-        backgroundColor: '#e9e7e7ff',
+        backgroundColor: 'hsla(0, 0%, 100%, 1.00)',
         padding: 10,
     },
     buttonForm: {
-        backgroundColor: '#1e56aaff',
+        backgroundColor: '#1b478aff',
         marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'center',
