@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native';
 
-//import Icon from 'react-native-vector-icons/FontAwesome';
+import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native';
+
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react';
 
-export default function Home() {
+export default function Home({navigation}) {
     return (
         <SafeAreaView style={style.mainS}>
             <View style={style.appBar}>
-                <Text style={style.appBarTittle}>INICIO</Text>
-                <View style={{ width: 20 }}></View>
+                
             </View>
             {/* cierre de appbar */}
             {/* inicio ded formulario */}
@@ -38,7 +38,7 @@ export default function Home() {
 
                         </View>
 
-                        <TouchableOpacity style={style.buttonForm}>
+                        <TouchableOpacity style={style.buttonForm} onPress={() => navigation.navigate("Alumnos")}>
                             {/* <Icon name="send" size={20} color={"#fff"} style={style.iconoCentro}/> */}
                             <Text style={style.textBotton}>Login</Text>
                         </TouchableOpacity>
@@ -57,22 +57,10 @@ const style = StyleSheet.create({
         flex: 1,
         backgroundColor: '#e0e8ebff',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
-        //padding: 25,
-        marginTop: 27,
+        padding: 25,
+       
     },
-    appBar: {
-        height: 50,
-        width: '100%',
-        backgroundColor: '#7ba3bdff',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 16,
-    },
-    appBarTittle: {
-        fontWeight: 'bold',
-        fontSize: 20,
-    },
+    
 
     container: {
         width: '100%',
