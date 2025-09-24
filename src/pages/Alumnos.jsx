@@ -48,15 +48,15 @@ export default function Alumnos({navigation}) {
             </TouchableOpacity>
           </View>
           <View style={style.navItem}>
-            <TouchableOpacity onPress={() => navigation.navigate("ListaAlumnos")}>
-            <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"}  />
-            <Text style={style.navText}>Users List</Text>
+            <TouchableOpacity>
+            <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Principal") } />
+            <Text style={style.navText}>Home</Text>
             </TouchableOpacity>
           </View>
           <View style={style.navItem}>
-            <TouchableOpacity>
-            <MaterialIcons style={style.icon} name="settings" marginTop={10} size={30} color={"#fff"}  />
-            <Text style={style.navText}>Settings</Text>
+            <TouchableOpacity style={{alignSelf:'center'}} onPress={() => navigation.navigate("ListaAlumnos")}>
+            <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"}  />
+            <Text style={style.navText}>Users List</Text>
             </TouchableOpacity>
           </View>
 
@@ -125,6 +125,9 @@ mainS: {
   },
   navItem:{
     alignItems:'center',
+    alignContent:'center',
+    alignSelf:'center',
+    
   },
   navInfo: {
     alignItems: 'center',

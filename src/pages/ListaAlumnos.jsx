@@ -6,15 +6,15 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 
 const data = [
-    { "id": 1, "Nombre": "Irvin ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 2, "Nombre": "Marco ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 3, "Nombre": "Diego ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 4, "Nombre": "Erik ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 1, "Nombre": "Irvin ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 2, "Nombre": "Marco ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 3, "Nombre": "Diego ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 4, "Nombre": "Erik ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
     { "id": 5, "Nombre": "Pedro ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 6, "Nombre": "Jorge ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 7, "Nombre": "Ana ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 8, "Nombre": "Ameli ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 9, "Nombre": "Azucena ", "NoControl": 22620075, "Carrera": "Ing. Sistemas",  "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 6, "Nombre": "Jorge ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 7, "Nombre": "Ana ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 8, "Nombre": "Ameli ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
+    { "id": 9, "Nombre": "Azucena ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
     // { "id": 9, "Nombre": "Sandy ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Semestre": 7, "Telefono": 9531643574, "Imagen": "imagen" }
 
 ];
@@ -37,7 +37,7 @@ export default function ListaAlumnos({ navigation }) {
                     <MaterialIcons name="edit" size={15} color={"#030303ff"} />
                     {/* <Text style={style.TextBotonList}>Editar</Text> */}
                 </TouchableOpacity>
-                <TouchableOpacity style={{ backgroundColor: '#cc1414f6', borderRadius: 10, padding: 10, margin: 4, borderColor:'' }}>
+                <TouchableOpacity style={{ backgroundColor: '#cc1414f6', borderRadius: 10, padding: 10, margin: 4, borderColor: '' }}>
                     <MaterialIcons name="delete" size={15} color={"#000000ff"} />
                     {/* <Text style={style.TextBotonList}>Eliminar</Text> */}
                 </TouchableOpacity>
@@ -66,8 +66,8 @@ export default function ListaAlumnos({ navigation }) {
                     data={data}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={renderItem}
-                    // horizontal={true}
-                    // showsHorizontalScrollIndicator={true}
+                // horizontal={true}
+                // showsHorizontalScrollIndicator={true}
                 />
             </View>
 
@@ -80,21 +80,21 @@ export default function ListaAlumnos({ navigation }) {
 
             <View style={style.navbar}>
                 <View style={style.navItem}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Alumnos")}>
-                        <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} />
+                    <TouchableOpacity>
+                        <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
                         <Text style={style.navText}>Users</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={style.navItem}>
-                    <TouchableOpacity >
-                        <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"}  />
-                        <Text style={style.navText}>Users List</Text>
+                    <TouchableOpacity>
+                        <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")}/>
+                        <Text style={style.navText}>Home</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={style.navItem}>
-                    <TouchableOpacity>
-                        <MaterialIcons style={style.icon} name="settings" marginTop={10} size={30} color={"#fff"} />
-                        <Text style={style.navText}>Settings</Text>
+                    <TouchableOpacity style={{ alignSelf: 'center' }} >
+                        <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"} />
+                        <Text style={style.navText}>Users List</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -141,8 +141,8 @@ const style = StyleSheet.create({
         flex: 1,
         fontWeight: 'bold',
         fontSize: 15,
-        textShadowColor:'#000',
-        shadowColor:'#000'
+        textShadowColor: '#000',
+        shadowColor: '#000'
         // borderRadius:6,
         // backgroundColor:'#e0ddddff',
         // textAlign:'center',
@@ -152,8 +152,8 @@ const style = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 8,
         marginHorizontal: 2,
-        shadowColor:'#000',
-        shadowOpacity:0.4,
+        shadowColor: '#000',
+        shadowOpacity: 0.4,
         elevation: 1,
         borderRadius: 4,
         borderColor: '#d4d4d4ff',
