@@ -9,7 +9,7 @@ import React from 'react';
 export default function Home({navigation}) {
     return (
         <SafeAreaView style={style.mainS}>
-            <ImageBackground style={style.wallpaper} resizeMode="cover" source={{uri:'https://tse3.mm.bing.net/th/id/OIP.kTBOWNtZgbUMJCLIJUhb6AHaNK?rs=1&pid=ImgDetMain&o=7&rm=3' }}>
+            <ImageBackground style={style.wallpaper} resizeMode="cover" source={{uri:'https://wallpaperaccess.com/full/1417825.jpg' }}>
             <View style={style.appBar}>
                 
             </View>

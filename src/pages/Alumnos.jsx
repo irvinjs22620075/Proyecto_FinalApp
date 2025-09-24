@@ -42,16 +42,22 @@ export default function Alumnos({navigation}) {
 
          <View style={style.navbar}>  
           <View style={style.navItem}>
+            <TouchableOpacity>
             <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"}  />
             <Text style={style.navText}>Users</Text>
+            </TouchableOpacity>
           </View>
           <View style={style.navItem}>
+            <TouchableOpacity onPress={() => navigation.navigate("ListaAlumnos")}>
             <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"}  />
             <Text style={style.navText}>Users List</Text>
+            </TouchableOpacity>
           </View>
           <View style={style.navItem}>
+            <TouchableOpacity>
             <MaterialIcons style={style.icon} name="settings" marginTop={10} size={30} color={"#fff"}  />
             <Text style={style.navText}>Settings</Text>
+            </TouchableOpacity>
           </View>
 
         </View>
