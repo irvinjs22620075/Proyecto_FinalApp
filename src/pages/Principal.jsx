@@ -31,27 +31,27 @@ export default function Principal({navigation}) {
 </ScrollView>
 
 
-         <View style={style.navbar}>  
-          <View style={style.navItem}>
-            <TouchableOpacity>
-            <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
-            <Text style={style.navText}>Users</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={style.navItem}>
-            <TouchableOpacity>
-            <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"}  />
-            <Text style={style.navText}>Home</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={style.navItem}>
-            <TouchableOpacity style={{alignSelf:'center'}} onPress={() => navigation.navigate("ListaAlumnos")}>
-            <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"}  />
-            <Text style={style.navText}>Users List</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
+        <View style={style.navbar}>
+                <View style={style.navItem}>
+                  <TouchableOpacity style={style.botonNav}>
+                    <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
+                    <Text style={style.navText}>Users</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.navItem}>
+                  <TouchableOpacity style={style.botonNav}>
+                    <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
+                    <Text style={style.navText}>Home</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.navItem}>
+                  <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
+                    <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"} />
+                    <Text style={style.navText}>Users List</Text>
+                  </TouchableOpacity>
+                </View>
+        
+              </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -70,7 +70,7 @@ mainS: {
         height: '100%',
     },
     login:{
-        backgroundColor:'#5060a7ff',
+        backgroundColor:'#1d3557',
         borderRadius:16,
         width:'25%',
         padding:6,
@@ -122,7 +122,7 @@ mainS: {
     justifyContent: 'space-around',
     alignItems: 'center',
     height: 80,
-    backgroundColor: '#5060a7ff',
+    backgroundColor: '#1d3557',
     marginTop:'auto',
     
     // borderTopWidth:1,  
@@ -140,9 +140,12 @@ mainS: {
   },
   navText: {
     fontSize: 12,
-    color: '#000000ff',
+    color: '#fff',
     marginTop: 4,
 
+  },
+  botonNav:{
+ alignItems:'center',
   },
 
 });

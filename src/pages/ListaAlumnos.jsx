@@ -1,213 +1,230 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { DataTable } from 'react-native-paper';
+import React, { useEffect, useState } from "react";
+import { View, Text, Button, ScrollView, Image, StyleSheet, SafeAreaView, Platform, TouchableOpacity, StatusBar } from "react-native";
+import { obtenerAlumnos, registrarAlumno } from "../services/alumnos.js";
+
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-const data = [
-    { "id": 1, "Nombre": "Irvin ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 2, "Nombre": "Marco ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 3, "Nombre": "Diego ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 4, "Nombre": "Erik ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 5, "Nombre": "Pedro ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 6, "Nombre": "Jorge ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 7, "Nombre": "Ana ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 8, "Nombre": "Ameli ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    { "id": 9, "Nombre": "Azucena ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Telefono": 9531643574, "Imagen": "imagen" },
-    // { "id": 9, "Nombre": "Sandy ", "NoControl": 22620075, "Carrera": "Ing. Sistemas", "Semestre": 7, "Telefono": 9531643574, "Imagen": "imagen" }
-
-];
 
 export default function ListaAlumnos({ navigation }) {
+  const [alumnos, setAlumnos] = useState([]);
 
-    const renderItem = ({ item }) => (
-        <View style={style.row}>
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await obtenerAlumnos();
+      if (data) setAlumnos(data);
+    };
+    fetchData();
+  }, []);
 
-            <Text style={style.cell}>{item.Nombre}</Text>
-            <Text style={style.cell}>{item.NoControl}</Text>
-            <Text style={style.cell}>{item.Carrera}</Text>
-            {/* <Text style={style.cell}>{item.Semestre}</Text> */}
-            <Text style={style.cell}>{item.Telefono}</Text>
-            <Image style={style.avatar} source={{ uri: "https://tse4.mm.bing.net/th/id/OIP.sEt9IS7ZhUi3CLe1VSwq5AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" }} />
-
-
-            <View style={style.BotonList}>
-                <TouchableOpacity style={{ backgroundColor: '#eea333ff', borderRadius: 10, padding: 10, margin: 4, }} >
-                    <MaterialIcons name="edit" size={15} color={"#030303ff"} />
-                    {/* <Text style={style.TextBotonList}>Editar</Text> */}
-                </TouchableOpacity>
-                <TouchableOpacity style={{ backgroundColor: '#cc1414f6', borderRadius: 10, padding: 10, margin: 4, borderColor: '' }}>
-                    <MaterialIcons name="delete" size={15} color={"#000000ff"} />
-                    {/* <Text style={style.TextBotonList}>Eliminar</Text> */}
-                </TouchableOpacity>
-            </View>
-
+  return (
+    <SafeAreaView style={style.mainS}>
+      <View style={style.container}>
+        <View style={style.headerTopBar}>
+          <Text style={style.headerTopBarText}>Lista de Alumnos</Text>
         </View>
-    )
 
-    return (
-        <SafeAreaView style={style.mainS}>
+      </View>
+      <ScrollView>
 
-            <View style={style.container}>
-                <View style={style.headerTopBar} >
-                    <Text style={style.headerTopBarText}>Lista de Alumnos</Text>
-                </View>
-                <View style={style.header}>
-                    <Text style={style.heading}>Nombre</Text>
-                    <Text style={style.heading}>No. C</Text>
-                    <Text style={style.heading}>Carrera</Text>
-                    {/* <Text style={style.heading}>Semestre</Text> */}
-                    <Text style={style.heading}>Tel.</Text>
-                    <Text style={style.heading}>Image</Text>
-                    <Text style={style.heading}>Opciones</Text>
-                </View>
-                <FlatList
-                    data={data}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={renderItem}
-                // horizontal={true}
-                // showsHorizontalScrollIndicator={true}
-                />
+        {/* Encabezado */}
+        {/* <View style={style.tableRowHeader}>
+      <Text style={style.tableHeader}>Nombre</Text>
+      <Text style={style.tableHeader}>No. Control</Text>
+      <Text style={style.tableHeader}>Carrera</Text>
+      <Text style={style.tableHeader}>Semestre</Text>
+      <Text style={style.tableHeader}>Teléfono</Text>
+      <Text style={style.tableHeader}>Imagen</Text>
+    </View> */}
+
+        {alumnos.map((alumno) => (
+          <View key={alumno.id} style={style.card}>
+
+            <View style={{ alignSelf: 'center' }}>
+              {alumno.Imagen ? (
+                <Image source={{ uri: `https://img.freepik.com/vector-premium/ilustracion-vector-personaje-dibujos-animados-anime_648489-34.jpg` }} style={style.avatar} />) : (
+                <Text style={style.tableCell}>IMAGE</Text>
+              )}
+            </View>
+
+            <View style={style.card1}>
+
+              <Text style={style.cardText}>Nombre:  </Text>
+              <Text style={style.cardTextIN}>{alumno.Nombre}</Text>
+              <Text style={style.cardText}>No. Control: </Text>
+              <Text style={style.cardTextIN}>{alumno.NumeroControl}</Text>
+              <Text style={style.cardText}>Carrera:</Text>
+              <Text style={style.cardTextIN}>{alumno.Carrera}</Text>
+              <Text style={style.cardText}>Semestre: </Text>
+              <Text style={style.cardTextIN}>{alumno.Semestre}</Text>
+              <Text style={style.cardText}>Telefono:</Text>
+              <Text style={style.cardTextIN} >{alumno.Telefono}</Text>
             </View>
 
 
-            {/* Inicio de Tabla */}
 
-            {/* Fin de tabla */}
-
-
-
-            <View style={style.navbar}>
-                <View style={style.navItem}>
-                    <TouchableOpacity>
-                        <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
-                        <Text style={style.navText}>Users</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={style.navItem}>
-                    <TouchableOpacity>
-                        <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")}/>
-                        <Text style={style.navText}>Home</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={style.navItem}>
-                    <TouchableOpacity style={{ alignSelf: 'center' }} >
-                        <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"} />
-                        <Text style={style.navText}>Users List</Text>
-                    </TouchableOpacity>
-                </View>
-
+            {/* Botones con opciones */}
+            <View style={{ alignItems: 'center', marginLeft: 10 }}>
+              <TouchableOpacity style={style.botonIcon1}>
+                <MaterialIcons name="edit" size={20} color="#000000ff" />
+              </TouchableOpacity>
+              <TouchableOpacity style={style.botonIcon2}>
+                <MaterialIcons name="delete" size={20} color="#fff" />
+              </TouchableOpacity>
             </View>
+            {/* fin de botones */}
+          </View>
 
-        </SafeAreaView>
-    );
+        ))}
+
+
+      </ScrollView>
+      <View style={style.navbar}>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Alumnos")}>
+            <MaterialIcons name="person" size={30} color={"#fff"} />
+            <Text style={style.navText}>Users</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Principal")}>
+            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"} />
+            <Text style={style.navText}>Home</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem} >
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")} >
+            <MaterialIcons name="list" size={30} color={"#fff"} />
+            <Text style={style.navText}>Users List</Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+    </SafeAreaView>
+
+  );
 }
 const style = StyleSheet.create({
-    mainS: {
-        flex: 1,
-        backgroundColor: '#fff',
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
-        //padding: 25,
-        //marginTop: 27,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        paddingVertical: 30,
-        paddingHorizontal: 15,
-    },
-    headerTopBar: {
-        backgroundColor: '#5060a7ff',
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        borderRadius: 5,
-        elevation: 2,
-        marginBottom: 15,
-    },
-    headerTopBarText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 10,
+  mainS: {
+    flex: 1,
+    backgroundColor: '#FCFCFC',
+    //paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+    //padding: 25,
+    //marginTop: 27,
+  },
+  headerTopBar: {
+    backgroundColor: '#1d3557',
+    borderRadius: 3,
+    padding: 8,
 
-    },
-    heading: {
-        flex: 1,
-        fontWeight: 'bold',
-        fontSize: 15,
-        textShadowColor: '#000',
-        shadowColor: '#000'
-        // borderRadius:6,
-        // backgroundColor:'#e0ddddff',
-        // textAlign:'center',
-    },
-    row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 8,
-        marginHorizontal: 2,
-        shadowColor: '#000',
-        shadowOpacity: 0.4,
-        elevation: 1,
-        borderRadius: 4,
-        borderColor: '#d4d4d4ff',
-        padding: 10,
-        backgroundColor: '#cdd8e2ff',
-    },
-    cell: {
-        fontSize: 15,
-        fontWeight: 'bold',
-    },
-    avatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-        marginBotton: 28,
-        marginRight: 12,
+  },
+  headerTopBarText: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#fff',
+  },
 
-    },
-    BotonList: {
-        //backgroundColor:'#ffffffff',
-        //borderRadius:15,
-        alignItems: 'flex-end',
-        alignSelf: 'flex-end',
-        padding: 5,
-        paddingBottom: 5,
-        marginEnd: 4,
-        // flexDirection:'row',
-        //flexWrap:'wrap',
-    },
-    //ESTILOS PARA EL NAVBAR
-    navbar: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        height: 80,
-        backgroundColor: '#5060a7ff',
-        marginTop: 'auto',
 
-        // borderTopWidth:1,  
-        // marginBottom:10,
-    },
-    navItem: {
-        alignItems: 'center',
-    },
-    navInfo: {
-        alignItems: 'center',
+  tableCell: {
+    flex: 1,
+    textAlign: "center",
+    fontSize: 12,
+    color: "#333",
+  },
+  card: {
+    padding: 16,
+    flexDirection: 'row',
+    borderRadius: 16,
+    backgroundColor: '#a7bcc9ff',
+    elevation: 2,
+    margin: 5,
+  },
+  card1: {
+    //padding:16,
+    //flexDirection:'row',
+    borderRadius: 16,
+    backgroundColor: '#dcdfe6ff',
+    elevation: 2,
+    paddingHorizontal: 40,
+    // margin:5,
+    width: 240,          // ancho fijo
+    minHeight: 150,      // altura mínima para que todas luzcan igual
+    justifyContent: 'center'
+  },
+  cardText: {
+    fontSize: 16,
+    fontWeight: 'bold',
 
-    },
-    navText: {
-        fontSize: 12,
-        color: '#000000ff',
-        marginTop: 4,
+  },
 
-    },
+  containertableData: {
+    // borderColor: '#000',
+    // borderWidth: 0.4,
+    backgroundColor: '#3b6197ff',
+    borderRadius: 5,
+    padding: 3,
+    // flexDirection:'row',
 
+
+  },
+  avatar: {
+    width: 70,
+    height: 70,
+    borderRadius: 50,
+    marginBotton: 28,
+    marginRight: 12,
+    flexDirection: 'row',
+  },
+ botonIcon1: {
+  backgroundColor: '#e99426ff',
+  borderRadius: 6,
+  width: 35,
+  height: 35,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+botonIcon2: {
+  backgroundColor: '#c50b0bff',
+  borderRadius: 6,
+  width: 35,
+  height: 35,
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: 4,
+},
+  //INICIO DE ESTILOS NAVBAR
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+
+    alignItems: 'center',
+    height: 80,
+    backgroundColor: '#1d3557',
+    marginTop: 'auto',
+
+    // borderTopWidth:1,  
+    // marginBottom:10,
+  },
+  navItem: {
+    // alignItems: 'center',
+    // alignContent: 'center',
+    // alignSelf: 'center',
+    flexDirection: 'row',
+
+  },
+  navInfo: {
+    alignItems: 'center',
+
+  },
+  navText: {
+    fontSize: 12,
+    color: '#fff',
+    marginTop: 4,
+
+  },
+  botonNav: {
+    alignItems: 'center',
+  },
 });
 

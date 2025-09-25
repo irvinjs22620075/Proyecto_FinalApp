@@ -6,6 +6,7 @@ import Home from "./src/pages/Home";
 import Alumnos from './src/pages/Alumnos';
 import ListaAlumnos from './src/pages/ListaAlumnos';
 import Principal from './src/pages/Principal';
+import Config from './src/pages/config';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,8 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Alumnos" component={Alumnos} />
         <Stack.Screen name="ListaAlumnos" component={ListaAlumnos}/>
+        {/* <Stack.Screen name="Config" component={Config}/> */}
+
       </Stack.Navigator>
     </NavigationContainer>
   );
