@@ -81,24 +81,23 @@ export default function ListaAlumnos({ navigation }) {
       </ScrollView>
       <View style={style.navbar}>
         <View style={style.navItem}>
-          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Alumnos")}>
-            <MaterialIcons name="person" size={30} color={"#fff"} />
-            <Text style={style.navText}>Users</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.navItem}>
-          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Principal")}>
-            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"} />
-            <Text style={style.navText}>Home</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.navItem} >
-          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")} >
-            <MaterialIcons name="list" size={30} color={"#fff"} />
-            <Text style={style.navText}>Users List</Text>
-          </TouchableOpacity>
-        </View>
-
+                    <TouchableOpacity style={style.botonNav}>
+                      <MaterialIcons name="person"  size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
+                      <Text style={style.navText}>Users</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={style.navItem}>
+                    <TouchableOpacity style={style.botonNav}>
+                      <MaterialIcons style={style.icon} name="home"size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
+                      <Text style={style.navText}>Home</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={style.navItem}>
+                    <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
+                      <MaterialIcons name="list" size={30} color={"#fff"} />
+                      <Text style={style.navText}>Users List</Text>
+                    </TouchableOpacity>
+                  </View>
       </View>
     </SafeAreaView>
 
@@ -194,24 +193,29 @@ botonIcon2: {
   margin: 4,
 },
   //INICIO DE ESTILOS NAVBAR
-  navbar: {
+ navbar: {
+    //position:'absolute',
+    bottom:20,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-
+    justifyContent: 'space-between',
     alignItems: 'center',
-    height: 80,
+    alignContent:'center',
     backgroundColor: '#1d3557',
-    marginTop: 'auto',
-
+    marginHorizontal:100,
+    paddingVertical:10,
+    paddingHorizontal:30,
+    borderRadius:40,
+    shadowColor:'#000',
+    elevation:8,
+    shadowOpacity:0.3,
     // borderTopWidth:1,  
     // marginBottom:10,
   },
   navItem: {
-    // alignItems: 'center',
-    // alignContent: 'center',
-    // alignSelf: 'center',
-    flexDirection: 'row',
-
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    
   },
   navInfo: {
     alignItems: 'center',

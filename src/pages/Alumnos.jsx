@@ -35,7 +35,7 @@ export default function Alumnos({ navigation }) {
             <Text style={style.label}>Telefono</Text>
             <TextInput style={style.info} placeholder="9531643574" keyboardType='numeric' value={Telefono} onChangeText={setTelefono} />
             <Text style={style.label}>Imagen</Text>
-            <TextInput style={style.info} placeholder="Ingrese una imagen" value={Imagen} onChangeText={setImagen} />
+            <TextInput style={style.info} placeholder="Enlace URL" value={Imagen} onChangeText={setImagen} />
 
 
             <TouchableOpacity style={style.Boton} onPress={async () => {
@@ -71,23 +71,23 @@ export default function Alumnos({ navigation }) {
 
       <View style={style.navbar}>
         <View style={style.navItem}>
-          <TouchableOpacity style={style.botonNav}>
-            <MaterialIcons name="person" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
-            <Text style={style.navText}>Users</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.navItem}>
-          <TouchableOpacity style={style.botonNav}>
-            <MaterialIcons style={style.icon} name="home" marginTop={10} size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
-            <Text style={style.navText}>Home</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.navItem}>
-          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
-            <MaterialIcons name="list" marginTop={10} size={30} color={"#fff"} />
-            <Text style={style.navText}>Users List</Text>
-          </TouchableOpacity>
-        </View>
+                    <TouchableOpacity style={style.botonNav}>
+                      <MaterialIcons name="person"  size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
+                      <Text style={style.navText}>Users</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={style.navItem}>
+                    <TouchableOpacity style={style.botonNav}>
+                      <MaterialIcons style={style.icon} name="home"size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
+                      <Text style={style.navText}>Home</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={style.navItem}>
+                    <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
+                      <MaterialIcons name="list" size={30} color={"#fff"} />
+                      <Text style={style.navText}>Users List</Text>
+                    </TouchableOpacity>
+                  </View>
 
       </View>
 
@@ -142,21 +142,28 @@ const style = StyleSheet.create({
   },
 
   navbar: {
+    //position:'absolute',
+    bottom:20,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    height: 80,
+    alignContent:'center',
     backgroundColor: '#1d3557',
-    marginTop: 'auto',
-
+    marginHorizontal:100,
+    paddingVertical:10,
+    paddingHorizontal:30,
+    borderRadius:40,
+    shadowColor:'#000',
+    elevation:8,
+    shadowOpacity:0.3,
     // borderTopWidth:1,  
     // marginBottom:10,
   },
   navItem: {
-    alignItems: 'center',
-    alignContent: 'center',
-    alignSelf: 'center',
-
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    
   },
   navInfo: {
     alignItems: 'center',
