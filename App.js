@@ -19,7 +19,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Alumnos" component={Alumnos} />
         <Stack.Screen name="ListaAlumnos" component={ListaAlumnos}/>
-        {/* <Stack.Screen name="Config" component={Config}/> */}
+        <Stack.Screen name="Config" component={Config}/>
 
       </Stack.Navigator>
     </NavigationContainer>

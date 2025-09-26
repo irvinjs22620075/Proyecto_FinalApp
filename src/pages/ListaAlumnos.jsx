@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, Image, StyleSheet, SafeAreaView, TouchableOpacity,Platform, StatusBar, Alert } from "react-native";
-import { obtenerAlumnos, eliminarAlumno } from "../services/alumnos.js"; // ✅ ya lo traemos de services
+import { View, Text, ScrollView, Image, StyleSheet, SafeAreaView, TouchableOpacity, Platform, StatusBar, Alert } from "react-native";
+import { obtenerAlumnos, eliminarAlumno } from "../services/alumnos.js"; // ya lo traemos de services
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -26,7 +26,7 @@ export default function ListaAlumnos({ navigation }) {
           style: "destructive",
           onPress: async () => {
             try {
-              const data = await eliminarAlumno(id); // ✅ usamos el service
+              const data = await eliminarAlumno(id); //  usamos el service
               Alert.alert("Éxito", data.message);
               setAlumnos(alumnos.filter((a) => a.id !== id)); // eliminamos del estado
             } catch (error) {
@@ -44,7 +44,11 @@ export default function ListaAlumnos({ navigation }) {
       <View style={style.container}>
         <View style={style.headerTopBar}>
           <Text style={style.headerTopBarText}>Lista de Alumnos</Text>
-          <FontAwesome5 name="search" size={20} color={'#fff'} />
+          <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+            <FontAwesome5 name="sync" size={20} color={'#fff'} marginHorizontal={15} />
+            <FontAwesome5 name="search" size={20} color={'#fff'} marginHorizontal={15} />
+          </View>
+
         </View>
       </View>
 
@@ -92,7 +96,7 @@ export default function ListaAlumnos({ navigation }) {
 
               {/* Botones */}
               <View style={{ flexDirection: "row", marginTop: 10, alignSelf: "center" }}>
-                <TouchableOpacity style={style.botonIcon1}>
+                <TouchableOpacity style={style.botonIcon1} onPress={() => navigation.navigate("Config", { alumno })}>
                   <MaterialIcons name="edit" size={20} color="#000" />
                 </TouchableOpacity>
                 <TouchableOpacity style={style.botonIcon2} onPress={() => confirmarEliminar(alumno.id)}>
@@ -175,10 +179,10 @@ const style = StyleSheet.create({
     justifyContent: 'center'
   },
   infoRow: {
-  flexDirection: 'row',
-  // justifyContent: 'space-between', // etiqueta a la izquierda, valor a la derecha
-  marginVertical: 3,
-},
+    flexDirection: 'row',
+    // justifyContent: 'space-between', // etiqueta a la izquierda, valor a la derecha
+    marginVertical: 3,
+  },
   cardTextIN: {
     fontSize: 15,
     fontWeight: 'bold'
