@@ -38,6 +38,22 @@ export default function ListaAlumnos({ navigation }) {
       ]
     );
   };
+// ACTUALIZAR CAMPOS
+
+
+  const refrescarAlumnos = async () => {
+  try {
+    const data = await obtenerAlumnos();
+    if (data) setAlumnos(data);
+    Alert.alert("Actualizado", "La lista de alumnos se ha actualizado correctamente.");
+  } catch (error) {
+    Alert.alert("Error", "No se pudieron cargar los alumnos");
+    console.error("Error al refrescar alumnos:", error);
+  }
+};
+useEffect(() => {
+  refrescarAlumnos();
+}, []);
 
   return (
     <SafeAreaView style={style.mainS}>
@@ -45,8 +61,14 @@ export default function ListaAlumnos({ navigation }) {
         <View style={style.headerTopBar}>
           <Text style={style.headerTopBarText}>Lista de Alumnos</Text>
           <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+            <TouchableOpacity onPress={refrescarAlumnos}>
             <FontAwesome5 name="sync" size={20} color={'#fff'} marginHorizontal={15} />
+
+            </TouchableOpacity>
+            <TouchableOpacity>
             <FontAwesome5 name="search" size={20} color={'#fff'} marginHorizontal={15} />
+
+            </TouchableOpacity>
           </View>
 
         </View>
