@@ -1,20 +1,22 @@
-
 import express from "express";
-import bodyParser from "body-parser";
-import alumnosRoutes from "./routes/Router.js";
-
-
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
-
+import cors from "cors";
+import alumnosRoutes from "./routes/alumnos.js";
 
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.json());
-app.use("/api", alumnosRoutes);
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// Rutas
+app.use("/", alumnosRoutes);
+
+// Middleware 404
+app.use((req, res) => {
+  res.status(404).json({ error: "Ruta no encontrada" });
+});
+
+// Iniciar servidor
+app.listen(PORT, "192.168.10.118", () => {
+  console.log(`✅ Servidor corriendo en http://192.168.10.118:${PORT}`);
 });

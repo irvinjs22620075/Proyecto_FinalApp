@@ -1,60 +1,84 @@
+// routes/alumnos.js
 import express from "express";
-import db from "../db.js"; // importamos la conexión
+import db from "../db.js"; // conexión que ya tienes en tu proyecto
 
 const router = express.Router();
 
-// Registrar un alumno
+// ✅ Registrar un alumno
 router.post("/alumnos", (req, res) => {
   const { Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen } = req.body;
 
-  const sql = "INSERT INTO Alumnos (Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen) VALUES (?, ?, ?, ?, ?, ?)";
-  db.query(sql, [Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen], (err, result) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json({ message: "Alumno registrado con éxito", id: result.insertId });
+  if (!Nombre || !NumeroControl || !Carrera || !Semestre || !Telefono) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const query = `
+    INSERT INTO Alumnos (Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(query, [Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen || null], (err, result) => {
+    if (err) {
+      console.error("❌ Error al registrar alumno:", err);
+      return res.status(500).json({ error: "Error al registrar alumno" });
+    }
+    res.status(201).json({ message: "✅ Alumno registrado correctamente", id: result.insertId });
   });
 });
 
-// Obtener todos los alumnos
-router.get("/alumnos", (req, res) => {
-  db.query("SELECT * FROM Alumnos", (err, results) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(results);
-  });
-});
-// Editar un alumno por ID
+// ✅ Actualizar alumno por ID
 router.put("/alumnos/:id", (req, res) => {
   const { id } = req.params;
   const { Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen } = req.body;
 
-  const sql = `
-    UPDATE Alumnos 
+  const query = `
+    UPDATE Alumnos
     SET Nombre = ?, NumeroControl = ?, Carrera = ?, Semestre = ?, Telefono = ?, Imagen = ?
     WHERE id = ?
   `;
-  db.query(sql, [Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen, id], (err, result) => {
-    if (err) return res.status(500).json({ error: err });
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Alumno no encontrado" });
+  db.query(query, [Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen || null, id], (err, result) => {
+    if (err) {
+      console.error("❌ Error al actualizar alumno:", err);
+      return res.status(500).json({ error: "Error al actualizar alumno" });
     }
 
-    res.json({ message: "Alumno actualizado con éxito" });
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Alumno no encontrado" });
+    }
+
+    res.json({ message: "✅ Alumno actualizado correctamente" });
   });
 });
 
-// Eliminar un alumno por ID
+// ✅ Obtener todos los alumnos
+router.get("/alumnos", (req, res) => {
+  const query = "SELECT * FROM Alumnos";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("❌ Error al obtener alumnos:", err);
+      return res.status(500).json({ error: "Error al obtener alumnos" });
+    }
+    res.json(results);
+  });
+});
+
+// ✅ Eliminar alumno por ID
 router.delete("/alumnos/:id", (req, res) => {
   const { id } = req.params;
 
-  const sql = "DELETE FROM Alumnos WHERE id = ?";
-  db.query(sql, [id], (err, result) => {
-    if (err) return res.status(500).json({ error: err });
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Alumno no encontrado" });
+  const query = "DELETE FROM Alumnos WHERE id = ?";
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      console.error("❌ Error al eliminar alumno:", err);
+      return res.status(500).json({ error: "Error al eliminar alumno" });
     }
 
-    res.json({ message: "Alumno eliminado con éxito" });
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Alumno no encontrado" });
+    }
+
+    res.json({ message: "✅ Alumno eliminado correctamente" });
   });
 });
 
