@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, SafeAreaView, Icon, ScrollView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import { Platform, StyleSheet, Text, View,Image, SafeAreaView, Icon, ScrollView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import React, { useEffect } from 'react';
 // import {interpolate, useAnimatedStyle, useSharedValue, withSpring} from 'react-native-reanimated';
 
@@ -49,24 +49,24 @@ export default function Principal({ navigation }) {
         </View>
 
         <View style={style.card1}>
-          <Text style={style.tittleB}>Bienvenidos </Text>
-          <Text style={style.tittleC}>a mi  </Text>
-          <Text style={style.tittleD}>Aplicación Móvil  </Text>
+          {/* <Text style={style.tittleB}>Bienvenidos </Text> */}
+         
+       <Image style={{alignSelf:'center', width:300, height:300}} source={require("../Images/logo.png")}/>
         </View>
         <View style={style.card}>
 
           <Text style={{ color: '#fff', fontSize: 20, marginTop: 10, fontWeight: 'bold' }}>¿Qué desea realizar?</Text>
           <View>
-            <TouchableOpacity style={style.cardBotonA}>
+            <TouchableOpacity style={style.cardBotonA} onPress={()=> navigation.navigate("Alumnos")}>
               <Text style={style.textcardBoton}>Registrar Alumnos</Text>
               <FontAwesome5 name="user-plus" size={20} alignSelf={'center'} color={'#fff'} />
 
             </TouchableOpacity>
-            <TouchableOpacity style={style.cardBotonD}>
+            {/* <TouchableOpacity style={style.cardBotonD}>
               <Text style={style.textcardBoton}>Registrar Docentes</Text>
               <FontAwesome5 name="user-plus" size={20} alignSelf={'center'} color={'#fff'} />
 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <Text style={{ color: '#fff', marginTop: 40, }}>Contactos</Text>
           <View style={style.iconsCard}>
@@ -108,7 +108,7 @@ export default function Principal({ navigation }) {
 const style = StyleSheet.create({
   mainS: {
     flex: 1,
-    backgroundColor: '#afbeccff',
+    backgroundColor: '#ffffffff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
     // padding: 25,
     marginTop: 27,
@@ -154,8 +154,8 @@ const style = StyleSheet.create({
   },
   card: {
     width: 300,
-    height: 350,
-    marginTop: 30,
+    height: 300,
+    marginTop: -60,
     backgroundColor: '#1d3557',
     borderRadius: 14,
     alignItems: 'center',
@@ -164,7 +164,7 @@ const style = StyleSheet.create({
     elevation: 5,
   },
   cardBotonA: {
-    backgroundColor: '#c2822eff',
+    backgroundColor: '#1f6831ff',
     borderRadius: 16,
     padding: 8,
     margin: 4,
@@ -172,15 +172,15 @@ const style = StyleSheet.create({
     // flexDirection:'row'
 
   },
-  cardBotonD: {
-    backgroundColor: '#1f6831ff',
-    borderRadius: 16,
-    padding: 8,
-    margin: 4,
-    marginTop: 20,
-    // flexDirection:'row'
+  // cardBotonD: {
+  //   backgroundColor: '#1f6831ff',
+  //   borderRadius: 16,
+  //   padding: 8,
+  //   margin: 4,
+  //   marginTop: 20,
+  //   // flexDirection:'row'
 
-  },
+  // },
   textcardBoton: {
     fontSize: 16,
     fontWeight: 'bold',

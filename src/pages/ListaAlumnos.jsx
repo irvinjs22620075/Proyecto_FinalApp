@@ -65,10 +65,6 @@ useEffect(() => {
             <FontAwesome5 name="sync" size={20} color={'#fff'} marginHorizontal={15} />
 
             </TouchableOpacity>
-            <TouchableOpacity>
-            <FontAwesome5 name="search" size={20} color={'#fff'} marginHorizontal={15} />
-
-            </TouchableOpacity>
           </View>
 
         </View>
@@ -76,58 +72,58 @@ useEffect(() => {
 
       <ScrollView style={{ padding: 10 }}>
         {alumnos.map((alumno) => (
-          <View key={alumno.id} style={style.card}>
-            {/* Imagen */}
-            <View>
-              {alumno.Imagen ? (
-                <Image
-                  source={{
-                    uri: `https://img.freepik.com/vector-premium/ilustracion-vector-personaje-dibujos-animados-anime_648489-34.jpg`,
-                  }}
-                  style={style.avatar}
-                />
-              ) : (
-                <Text style={style.tableCell}>IMAGE</Text>
-              )}
-            </View>
+  <View key={alumno.id} style={style.card}>
+    {/* Imagen dinámica */}
+    <View>
+      <Image
+  source={{
+    uri:
+      alumno.Imagen && typeof alumno.Imagen === "string" && alumno.Imagen.trim() !== ""
+        ? alumno.Imagen // Imagen proporcionada por el usuario
+        : "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" // Imagen por defecto
+  }}
+  style={style.avatar}
+/>
+    </View>
 
-            {/* Datos + botones */}
-            <View style={{ flexDirection: "column", marginLeft: 10 }}>
-              <View style={style.card1}>
-                <View style={style.infoRow}>
-                  <Text style={style.cardTextIN}>Nombre: </Text>
-                  <Text style={style.cardText}>{alumno.Nombre}</Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.cardTextIN}>No. Control: </Text>
-                  <Text style={style.cardText}>{alumno.NumeroControl}</Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.cardTextIN}>Carrera: </Text>
-                  <Text style={style.cardText}>{alumno.Carrera}</Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.cardTextIN}>Semestre: </Text>
-                  <Text style={style.cardText}>{alumno.Semestre}</Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.cardTextIN}>Teléfono: </Text>
-                  <Text style={style.cardText}>{alumno.Telefono}</Text>
-                </View>
-              </View>
+    {/* Datos + botones */}
+    <View style={{ flexDirection: "column", marginLeft: 10 }}>
+      <View style={style.card1}>
+        <View style={style.infoRow}>
+          <Text style={style.cardTextIN}>Nombre: </Text>
+          <Text style={style.cardText}>{alumno.Nombre}</Text>
+        </View>
+        <View style={style.infoRow}>
+          <Text style={style.cardTextIN}>No. Control: </Text>
+          <Text style={style.cardText}>{alumno.NumeroControl}</Text>
+        </View>
+        <View style={style.infoRow}>
+          <Text style={style.cardTextIN}>Carrera: </Text>
+          <Text style={style.cardText}>{alumno.Carrera}</Text>
+        </View>
+        <View style={style.infoRow}>
+          <Text style={style.cardTextIN}>Semestre: </Text>
+          <Text style={style.cardText}>{alumno.Semestre}</Text>
+        </View>
+        <View style={style.infoRow}>
+          <Text style={style.cardTextIN}>Teléfono: </Text>
+          <Text style={style.cardText}>{alumno.Telefono}</Text>
+        </View>
+      </View>
 
-              {/* Botones */}
-              <View style={{ flexDirection: "row", marginTop: 10, alignSelf: "center" }}>
-                <TouchableOpacity style={style.botonIcon1} onPress={() => navigation.navigate("Config", { alumno })}>
-                  <MaterialIcons name="edit" size={20} color="#000" />
-                </TouchableOpacity>
-                <TouchableOpacity style={style.botonIcon2} onPress={() => confirmarEliminar(alumno.id)}>
-                  <MaterialIcons name="delete" size={20} color="#000" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        ))}
+      {/* Botones */}
+      <View style={{ flexDirection: "row", marginTop: 10, alignSelf: "center" }}>
+        <TouchableOpacity style={style.botonIcon1} onPress={() => navigation.navigate("Config", { alumno })}>
+          <MaterialIcons name="edit" size={20} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity style={style.botonIcon2} onPress={() => confirmarEliminar(alumno.id)}>
+          <MaterialIcons name="delete" size={20} color="#000" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
+))}
+
       </ScrollView>
 
       {/* Navbar */}

@@ -66,7 +66,7 @@ export default function Alumnos({ navigation }) {
                 alert("Error al registrar alumno")
               }
             }}>
-              <Text style={{ color: '#fff', textAlign: 'center', padding: 8, justifyContent: 'center' }}>Registrar Alumno</Text>
+              <Text style={{ color: '#000', fontWeight:'bold', textAlign: 'center', padding: 8, justifyContent: 'center' }}>Registrar Alumno</Text>
               <FontAwesome5 style={style.iconRigth} name='user-plus' size={20} color={"#fff"} alignSelf={'center'} padding={2} />
 
             </TouchableOpacity>
@@ -154,7 +154,7 @@ const style = StyleSheet.create({
   },
   Boton: {
     borderRadius: 20,
-    backgroundColor: '#d18339ff',
+    backgroundColor: '#1f6831ff',
     width: '40%',
     alignSelf: 'center',
     // padding: 2,

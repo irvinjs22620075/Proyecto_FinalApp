@@ -15,18 +15,22 @@ export default function Config({ navigation, route }) {
   const [Telefono, setTelefono] = useState(alumnoEditar ? alumnoEditar.Telefono : "");
   const [Imagen, setImagen] = useState(alumnoEditar ? alumnoEditar.Imagen : "");
 
+  // Contador de ediciones
+  const [contadorEdiciones, setContadorEdiciones] = useState(0);
+
   const handleSubmit = async () => {
     try {
       if (alumnoEditar) {
         // Editar alumno
         await editarAlumno(alumnoEditar.id, { Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen });
         Alert.alert("Éxito", "Alumno actualizado correctamente");
+        setContadorEdiciones(prev => prev + 1); // incrementamos el contador
       } else {
         // Registrar nuevo alumno
         await registrarAlumno({ Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen });
         Alert.alert("Éxito", "Alumno registrado correctamente");
       }
-      navigation.goBack();
+      // navigation.goBack(); // opcional: puedes dejarlo para cerrar la pantalla
     } catch (error) {
       console.error("Error al guardar alumno:", error);
       Alert.alert("Error", "No se pudo guardar el alumno");
@@ -35,10 +39,7 @@ export default function Config({ navigation, route }) {
 
   return (
     <SafeAreaView style={style.mainS}>
-      <View style={style.headerTopBar}>
-        <Text style={style.headerTopBarText}>{alumnoEditar ? "Editar Alumno" : "Registrar Alumno"}</Text>
-      </View>
-
+      
       <ScrollView style={{ padding: 15 }}>
         <View style={style.container}>
           <Text style={style.TitleContainer}>{alumnoEditar ? "Editar Alumno" : "Registrar Alumno"}</Text>
@@ -63,6 +64,12 @@ export default function Config({ navigation, route }) {
             <Text style={style.label}>Imagen</Text>
             <TextInput style={style.info} placeholder="Enlace URL" value={Imagen} onChangeText={setImagen} />
 
+            {alumnoEditar && (
+              <Text style={{ marginBottom: 10, fontWeight: 'bold', color: '#fff' }}>
+                Número de ediciones: {contadorEdiciones}
+              </Text>
+            )}
+
             <TouchableOpacity style={style.Boton} onPress={handleSubmit}>
               <Text style={{ color: '#fff', textAlign: 'center', padding: 8 }}>
                 {alumnoEditar ? "Actualizar Alumno" : "Registrar Alumno"}
@@ -82,7 +89,7 @@ const style = StyleSheet.create({
     backgroundColor: '#e0e8ebff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
     //padding: 25,
-    //marginTop: 27,
+    marginTop: 27,
   },
   container: {
     backgroundColor: '#1d3557',
