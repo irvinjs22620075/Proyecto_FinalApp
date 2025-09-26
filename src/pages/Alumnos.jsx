@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
@@ -19,10 +20,15 @@ export default function Alumnos({ navigation }) {
   return (
     <SafeAreaView style={style.mainS}>
 
+      <View style={style.headerTopBar}>
+        <Text style={style.headerTopBarText}>Registro</Text>
+      </View>
+
       <ScrollView style={{ padding: 15 }}>
         {/* Inicio de Lista */}
         <View style={style.container}>
           <Text style={style.TitleContainer}>Registrar Alumnos</Text>
+          <FontAwesome5 name="users" size={30} color={'#e9a770ff'} padding={4} alignSelf={'center'} />
           <View style={style.cardInfo}>
             <Text style={style.label}>Nombre</Text>
             <TextInput style={style.info} placeholder="Ingresa tu nombre" value={Nombre} onChangeText={setNombre} />
@@ -60,8 +66,9 @@ export default function Alumnos({ navigation }) {
                 alert("Error al registrar alumno")
               }
             }}>
-              {/* <MaterialIcons style={style.iconRigth} name='send' marginTop={10} size={20} color={"#fff"}/> */}
               <Text style={{ color: '#fff', textAlign: 'center', padding: 8, justifyContent: 'center' }}>Registrar Alumno</Text>
+              <FontAwesome5 style={style.iconRigth} name='user-plus' size={20} color={"#fff"} alignSelf={'center'} padding={2} />
+
             </TouchableOpacity>
           </View>
         </View>
@@ -71,23 +78,23 @@ export default function Alumnos({ navigation }) {
 
       <View style={style.navbar}>
         <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav}>
-                      <MaterialIcons name="person"  size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
-                      <Text style={style.navText}>Users</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav}>
-                      <MaterialIcons style={style.icon} name="home"size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
-                      <Text style={style.navText}>Home</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
-                      <MaterialIcons name="list" size={30} color={"#fff"} />
-                      <Text style={style.navText}>Users List</Text>
-                    </TouchableOpacity>
-                  </View>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Alumnos")}>
+            <MaterialIcons name="person" size={30} color={"#fff"}  />
+            <Text style={style.navText}>Users</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Principal")}>
+            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"}  />
+            <Text style={style.navText}>Home</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
+            <MaterialIcons name="list" size={30} color={"#fff"} />
+            <Text style={style.navText}>Users List</Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
 
@@ -97,11 +104,24 @@ export default function Alumnos({ navigation }) {
 const style = StyleSheet.create({
   mainS: {
     flex: 1,
-    backgroundColor: '#e0e8ebff',
+    backgroundColor: '#afbeccff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
     //padding: 25,
-    //marginTop: 27,
+    marginTop: 27,
   },
+   headerTopBar: {
+    backgroundColor: '#1d3557',
+    // borderRadius: 3,
+    padding: 8,
+
+  },
+  headerTopBarText: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#fff',
+  },
+
   container: {
     backgroundColor: '#1d3557',
     padding: 16,
@@ -135,35 +155,35 @@ const style = StyleSheet.create({
   Boton: {
     borderRadius: 20,
     backgroundColor: '#d18339ff',
-    width: '75%',
+    width: '40%',
     alignSelf: 'center',
-    padding: 2,
+    // padding: 2,
     //  flexDirection:'row',
   },
 
   navbar: {
     //position:'absolute',
-    bottom:20,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    alignContent:'center',
+    alignContent: 'center',
     backgroundColor: '#1d3557',
-    marginHorizontal:100,
-    paddingVertical:10,
-    paddingHorizontal:30,
-    borderRadius:40,
-    shadowColor:'#000',
-    elevation:8,
-    shadowOpacity:0.3,
+    marginHorizontal: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 40,
+    shadowColor: '#000',
+    elevation: 8,
+    shadowOpacity: 0.3,
     // borderTopWidth:1,  
     // marginBottom:10,
   },
   navItem: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   navInfo: {
     alignItems: 'center',

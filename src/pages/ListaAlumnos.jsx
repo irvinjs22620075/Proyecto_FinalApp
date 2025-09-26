@@ -25,79 +25,88 @@ export default function ListaAlumnos({ navigation }) {
         </View>
 
       </View>
-      <ScrollView>
-
-        {/* Encabezado */}
-        {/* <View style={style.tableRowHeader}>
-      <Text style={style.tableHeader}>Nombre</Text>
-      <Text style={style.tableHeader}>No. Control</Text>
-      <Text style={style.tableHeader}>Carrera</Text>
-      <Text style={style.tableHeader}>Semestre</Text>
-      <Text style={style.tableHeader}>Teléfono</Text>
-      <Text style={style.tableHeader}>Imagen</Text>
-    </View> */}
+      <ScrollView style={{ padding: 10 }}>
 
         {alumnos.map((alumno) => (
           <View key={alumno.id} style={style.card}>
+            
 
-            <View style={{ alignSelf: 'center' }}>
+            {/* Imagen */}
+            <View>
               {alumno.Imagen ? (
-                <Image source={{ uri: `https://img.freepik.com/vector-premium/ilustracion-vector-personaje-dibujos-animados-anime_648489-34.jpg` }} style={style.avatar} />) : (
+                <Image
+                  source={{
+                    uri: `https://img.freepik.com/vector-premium/ilustracion-vector-personaje-dibujos-animados-anime_648489-34.jpg`,
+                  }}
+                  style={style.avatar}
+                />
+              ) : (
                 <Text style={style.tableCell}>IMAGE</Text>
               )}
             </View>
 
-            <View style={style.card1}>
+            {/* Agrupamos card1 + botones */}
+            <View style={{ flexDirection: 'column', marginLeft: 10 }}>
+              {/* Card con info */}
+              <View style={style.card1}>
+                <View style={style.infoRow}>
+                  <Text style={style.cardTextIN}>Nombre: </Text>
+                <Text style={style.cardText}>{alumno.Nombre}</Text>
+                </View >
+                <View style={style.infoRow}>
+                  <Text style={style.cardTextIN}>No. Control: </Text>
+                <Text style={style.cardText}>{alumno.NumeroControl}</Text>
+                </View>
+                 <View style={style.infoRow}>
+                  <Text style={style.cardTextIN}>Carrera: </Text>
+                <Text style={style.cardText}>{alumno.Carrera}</Text>
+                </View>
+                 <View style={style.infoRow}>
+                  <Text style={style.cardTextIN}>Semestre: </Text>
+                <Text style={style.cardText}>{alumno.Semestre}</Text>
+                </View>
+                 <View style={style.infoRow}>
+                  <Text style={style.cardTextIN}>Teléfono: </Text>
+                <Text style={style.cardText}>Teléfono: {alumno.Telefono}</Text>
+                </View>
 
-              <Text style={style.cardText}>Nombre:  </Text>
-              <Text style={style.cardTextIN}>{alumno.Nombre}</Text>
-              <Text style={style.cardText}>No. Control: </Text>
-              <Text style={style.cardTextIN}>{alumno.NumeroControl}</Text>
-              <Text style={style.cardText}>Carrera:</Text>
-              <Text style={style.cardTextIN}>{alumno.Carrera}</Text>
-              <Text style={style.cardText}>Semestre: </Text>
-              <Text style={style.cardTextIN}>{alumno.Semestre}</Text>
-              <Text style={style.cardText}>Telefono:</Text>
-              <Text style={style.cardTextIN} >{alumno.Telefono}</Text>
+              </View>
+
+              {/* Botones debajo de card1 */}
+              <View style={{ flexDirection: 'row', marginTop: 10, alignSelf: 'center' }}>
+                <TouchableOpacity style={style.botonIcon1}>
+                  <MaterialIcons name="edit" size={20} color="#000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={style.botonIcon2}>
+                  <MaterialIcons name="delete" size={20} color="#000" />
+                </TouchableOpacity>
+              </View>
             </View>
-
-
-
-            {/* Botones con opciones */}
-            <View style={{ alignItems: 'center', marginLeft: 10 }}>
-              <TouchableOpacity style={style.botonIcon1}>
-                <MaterialIcons name="edit" size={20} color="#000000ff" />
-              </TouchableOpacity>
-              <TouchableOpacity style={style.botonIcon2}>
-                <MaterialIcons name="delete" size={20} color="#fff" />
-              </TouchableOpacity>
-            </View>
-            {/* fin de botones */}
           </View>
-
         ))}
+
 
 
       </ScrollView>
       <View style={style.navbar}>
         <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav}>
-                      <MaterialIcons name="person"  size={30} color={"#fff"} onPress={() => navigation.navigate("Alumnos")} />
-                      <Text style={style.navText}>Users</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav}>
-                      <MaterialIcons style={style.icon} name="home"size={30} color={"#fff"} onPress={() => navigation.navigate("Principal")} />
-                      <Text style={style.navText}>Home</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={style.navItem}>
-                    <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
-                      <MaterialIcons name="list" size={30} color={"#fff"} />
-                      <Text style={style.navText}>Users List</Text>
-                    </TouchableOpacity>
-                  </View>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Alumnos")}>
+            <MaterialIcons name="person" size={30} color={"#fff"}  />
+            <Text style={style.navText}>Users</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Principal")}>
+            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"}  />
+            <Text style={style.navText}>Home</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={style.navItem}>
+          <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("ListaAlumnos")}>
+            <MaterialIcons name="list" size={30} color={"#fff"} />
+            <Text style={style.navText}>Users List</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
 
@@ -106,8 +115,8 @@ export default function ListaAlumnos({ navigation }) {
 const style = StyleSheet.create({
   mainS: {
     flex: 1,
-    backgroundColor: '#FCFCFC',
-    //paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+    backgroundColor: '#afbeccff',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
     //padding: 25,
     //marginTop: 27,
   },
@@ -135,87 +144,85 @@ const style = StyleSheet.create({
     padding: 16,
     flexDirection: 'row',
     borderRadius: 16,
-    backgroundColor: '#a7bcc9ff',
+    backgroundColor: '#34527cff',
     elevation: 2,
     margin: 5,
+    // alignItems: 'center', 
   },
   card1: {
-    //padding:16,
-    //flexDirection:'row',
     borderRadius: 16,
-    backgroundColor: '#dcdfe6ff',
+    backgroundColor: '#ebe7eaff',
     elevation: 2,
-    paddingHorizontal: 40,
-    // margin:5,
-    width: 240,          // ancho fijo
-    minHeight: 150,      // altura mínima para que todas luzcan igual
+    padding: 12,
+    width: 265,          // ancho fijo
+    minHeight: 130,      // altura mínima para que todas luzcan igual
     justifyContent: 'center'
   },
+  infoRow: {
+  flexDirection: 'row',
+  // justifyContent: 'space-between', // etiqueta a la izquierda, valor a la derecha
+  marginVertical: 3,
+},
+  cardTextIN: {
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
   cardText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    // fontWeight: 'bold',
 
   },
 
-  containertableData: {
-    // borderColor: '#000',
-    // borderWidth: 0.4,
-    backgroundColor: '#3b6197ff',
-    borderRadius: 5,
-    padding: 3,
-    // flexDirection:'row',
-
-
-  },
   avatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
-    marginBotton: 28,
-    marginRight: 12,
+    width: 80,
+    height: 80,
+    borderRadius: 15,
+    marginTop: 28,
+    // marginRight: 12,
     flexDirection: 'row',
   },
- botonIcon1: {
-  backgroundColor: '#e99426ff',
-  borderRadius: 6,
-  width: 35,
-  height: 35,
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-botonIcon2: {
-  backgroundColor: '#c50b0bff',
-  borderRadius: 6,
-  width: 35,
-  height: 35,
-  justifyContent: 'center',
-  alignItems: 'center',
-  margin: 4,
-},
+  botonIcon1: {
+    backgroundColor: '#e99426ff',
+    borderRadius: 6,
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  botonIcon2: {
+    backgroundColor: '#c50b0bff',
+    borderRadius: 6,
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // margin: 4,
+    marginHorizontal: 14,
+  },
   //INICIO DE ESTILOS NAVBAR
- navbar: {
+  navbar: {
     //position:'absolute',
-    bottom:20,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    alignContent:'center',
+    alignContent: 'center',
     backgroundColor: '#1d3557',
-    marginHorizontal:100,
-    paddingVertical:10,
-    paddingHorizontal:30,
-    borderRadius:40,
-    shadowColor:'#000',
-    elevation:8,
-    shadowOpacity:0.3,
+    marginHorizontal: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 40,
+    shadowColor: '#000',
+    elevation: 8,
+    shadowOpacity: 0.3,
     // borderTopWidth:1,  
     // marginBottom:10,
   },
   navItem: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   navInfo: {
     alignItems: 'center',

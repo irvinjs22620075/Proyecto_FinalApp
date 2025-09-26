@@ -1,5 +1,6 @@
 
 import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, TouchableOpacity, TextInput, Image, StatusBar,ImageBackground  } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -9,7 +10,7 @@ import React from 'react';
 export default function Home({navigation}) {
     return (
         <SafeAreaView style={style.mainS}>
-            <ImageBackground style={style.wallpaper} resizeMode="cover" source={{uri:'https://wallpaperaccess.com/full/1417825.jpg' }}>
+            {/* <ImageBackground style={style.wallpaper} resizeMode="cover" source={{uri:'https://wallpaperaccess.com/full/1417825.jpg' }}> */}
             <View style={style.appBar}>
                 
             </View>
@@ -31,11 +32,12 @@ export default function Home({navigation}) {
                         <Text style={style.label}>Email</Text>
                         <TextInput style={style.input} placeholder="docs@gmail.com" keyboardType='email-address' />
                         <View style={style.rowBetween}>
-                            <TouchableOpacity>
-                                <Text >Remember me</Text>
+                            <TouchableOpacity style={{flexDirection:'row', }}>
+                                <FontAwesome5 name="check-square" color={'#fff'}/>
+                                <Text style={{color:'#fff'}} >Remember me</Text>
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <Text >Forgot Password?</Text>
+                                <Text style={{color:'#fff'}}  >Forgot Password?</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -48,7 +50,7 @@ export default function Home({navigation}) {
                 </View>
             </ScrollView>
             {/* fin de formulario */}
-            </ImageBackground>
+            {/* </ImageBackground> */}
         </SafeAreaView>
 
     );
@@ -57,8 +59,9 @@ export default function Home({navigation}) {
 const style = StyleSheet.create({
     mainS: {
         flex: 1,
-        //backgroundColor: '#ffffffff',
-       // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
+    backgroundColor: '#afbeccff',
+        
+       paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
         //padding: 25,
        
     },
@@ -69,7 +72,9 @@ const style = StyleSheet.create({
     },
     container: {
         width: '100%',
-        backgroundColor: '#5188bbe7',
+        // backgroundColor: '#5188bbe7',
+    backgroundColor: '#1d3557',
+
         borderRadius: 15,
         padding: 15,
         // alignItems: 'flex-start',
@@ -78,6 +83,7 @@ const style = StyleSheet.create({
         shadowOffset: { width: 0, height: 0 },
         shadowRadius: 10,
         elevation: 5,
+        marginTop:150,
     },
 
     avatar: {
@@ -95,6 +101,7 @@ const style = StyleSheet.create({
         marginBottom: 8,
         textAlign: 'start',
         marginStart: 12,
+        color:'#fff',
     },
     labelInf: {
         alignSelf: 'flex-end',
