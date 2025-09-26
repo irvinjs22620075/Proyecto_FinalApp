@@ -28,8 +28,6 @@ export default function Principal({ navigation }) {
   //   });
   return (
 
-
-
     <SafeAreaView style={style.mainS}>
       {/* <ImageBackground style={style.wallpaper} resizeMode="cover" source={require("../Images/Snoppy2.jpg")}> */}
       <View style={style.container}>
@@ -40,13 +38,13 @@ export default function Principal({ navigation }) {
       </View>
       <ScrollView style={{ padding: 15 }}>
         {/* Inicio de Lista */}
-        <View>
+        {/* <View>
           <TouchableOpacity style={style.login} onPress={() => navigation.navigate("Home")}>
             <Text style={style.tittleLogin}>
               Sign up
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         <View style={style.card1}>
           {/* <Text style={style.tittleB}>Bienvenidos </Text> */}

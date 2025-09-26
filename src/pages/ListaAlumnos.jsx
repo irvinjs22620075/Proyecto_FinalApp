@@ -82,8 +82,7 @@ useEffect(() => {
         ? alumno.Imagen // Imagen proporcionada por el usuario
         : "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" // Imagen por defecto
   }}
-  style={style.avatar}
-/>
+  style={style.avatar}/>
     </View>
 
     {/* Datos + botones */}

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View, SafeAreaView, Icon, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { Platform,Alert,  StyleSheet, Text, View, SafeAreaView, Icon, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { registrarAlumno } from '../services/alumnos';
 import React, { useState } from 'react';
 
@@ -44,31 +44,54 @@ export default function Alumnos({ navigation }) {
             <TextInput style={style.info} placeholder="Enlace URL" value={Imagen} onChangeText={setImagen} />
 
 
-            <TouchableOpacity style={style.Boton} onPress={async () => {
-              try {
-                await registrarAlumno({
-                  Nombre,
-                  NumeroControl,
-                  Carrera,
-                  Semestre,
-                  Telefono,
-                  Imagen
-                });
-                alert("Alumno registrado correctamente");
-                setNombre("");
-                setNumeroControl("");
-                setCarrera("");
-                setSemestre("");
-                setTelefono("");
-                setImagen("");
-              } catch (error) {
-                console.error("Error al registrar alumno: ", error);
-                alert("Error al registrar alumno")
-              }
-            }}>
-              <Text style={{ color: '#000', fontWeight:'bold', textAlign: 'center', padding: 8, justifyContent: 'center' }}>Registrar Alumno</Text>
-              <FontAwesome5 style={style.iconRigth} name='user-plus' size={20} color={"#fff"} alignSelf={'center'} padding={2} />
+            <TouchableOpacity
+              style={style.Boton}
+              onPress={async () => {
+                // Validación de campos vacíos
+                if (!Nombre || !NumeroControl || !Carrera || !Semestre || !Telefono) {
+                  Alert.alert(
+                    "Campos incompletos",
+                    "Por favor completa todos los campos obligatorios antes de registrar al alumno."
+                  );
+                  return; // Salimos de la función, no se registra
+                }
 
+                try {
+                  await registrarAlumno({
+                    Nombre,
+                    NumeroControl,
+                    Carrera,
+                    Semestre,
+                    Telefono,
+                    Imagen
+                  });
+
+                  Alert.alert("Éxito", "Alumno registrado correctamente");
+
+                  // Limpiar campos
+                  setNombre("");
+                  setNumeroControl("");
+                  setCarrera("");
+                  setSemestre("");
+                  setTelefono("");
+                  setImagen("");
+                } catch (error) {
+                  console.error("Error al registrar alumno: ", error);
+                  Alert.alert("Error", "No se pudo registrar al alumno");
+                }
+              }}
+            >
+              <Text style={{ color: '#000', fontWeight: 'bold', textAlign: 'center', padding: 8, justifyContent: 'center' }}>
+                Registrar Alumno
+              </Text>
+              <FontAwesome5
+                style={style.iconRigth}
+                name='user-plus'
+                size={20}
+                color={"#fff"}
+                alignSelf={'center'}
+                padding={2}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -79,13 +102,13 @@ export default function Alumnos({ navigation }) {
       <View style={style.navbar}>
         <View style={style.navItem}>
           <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Alumnos")}>
-            <MaterialIcons name="person" size={30} color={"#fff"}  />
+            <MaterialIcons name="person" size={30} color={"#fff"} />
             <Text style={style.navText}>Users</Text>
           </TouchableOpacity>
         </View>
         <View style={style.navItem}>
           <TouchableOpacity style={style.botonNav} onPress={() => navigation.navigate("Principal")}>
-            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"}  />
+            <MaterialIcons style={style.icon} name="home" size={30} color={"#fff"} />
             <Text style={style.navText}>Home</Text>
           </TouchableOpacity>
         </View>
@@ -109,7 +132,7 @@ const style = StyleSheet.create({
     //padding: 25,
     marginTop: 27,
   },
-   headerTopBar: {
+  headerTopBar: {
     backgroundColor: '#1d3557',
     // borderRadius: 3,
     padding: 8,

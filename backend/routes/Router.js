@@ -1,10 +1,10 @@
 // routes/alumnos.js
 import express from "express";
-import db from "../db.js"; // conexión que ya tienes en tu proyecto
+import db from "../db.js"; 
 
 const router = express.Router();
 
-// ✅ Registrar un alumno
+// Registrar un alumno
 router.post("/alumnos", (req, res) => {
   const { Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen } = req.body;
 
@@ -22,11 +22,11 @@ router.post("/alumnos", (req, res) => {
       console.error("❌ Error al registrar alumno:", err);
       return res.status(500).json({ error: "Error al registrar alumno" });
     }
-    res.status(201).json({ message: "✅ Alumno registrado correctamente", id: result.insertId });
+    res.status(201).json({ message: " Alumno registrado correctamente", id: result.insertId });
   });
 });
 
-// ✅ Actualizar alumno por ID
+// Actualizar alumno por ID
 router.put("/alumnos/:id", (req, res) => {
   const { id } = req.params;
   const { Nombre, NumeroControl, Carrera, Semestre, Telefono, Imagen } = req.body;
@@ -47,11 +47,11 @@ router.put("/alumnos/:id", (req, res) => {
       return res.status(404).json({ error: "Alumno no encontrado" });
     }
 
-    res.json({ message: "✅ Alumno actualizado correctamente" });
+    res.json({ message: " Alumno actualizado correctamente" });
   });
 });
 
-// ✅ Obtener todos los alumnos
+//  Obtener todos los alumnos
 router.get("/alumnos", (req, res) => {
   const query = "SELECT * FROM Alumnos";
   db.query(query, (err, results) => {
@@ -63,7 +63,7 @@ router.get("/alumnos", (req, res) => {
   });
 });
 
-// ✅ Eliminar alumno por ID
+//  Eliminar alumno por ID
 router.delete("/alumnos/:id", (req, res) => {
   const { id } = req.params;
 
@@ -78,7 +78,7 @@ router.delete("/alumnos/:id", (req, res) => {
       return res.status(404).json({ error: "Alumno no encontrado" });
     }
 
-    res.json({ message: "✅ Alumno eliminado correctamente" });
+    res.json({ message: " Alumno eliminado correctamente" });
   });
 });
 

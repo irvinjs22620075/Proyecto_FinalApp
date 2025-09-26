@@ -16,3 +16,4 @@ connection.connect((err)=>{
     console.log("Conectado a MySQL correctamente");
 });
 export default connection;
+
