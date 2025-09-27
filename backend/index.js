@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import alumnosRoutes from "./routes/alumnos.js";
+import alumnosRoutes from "./routes/Router.js";
 
 const app = express();
 const PORT = 3000;
